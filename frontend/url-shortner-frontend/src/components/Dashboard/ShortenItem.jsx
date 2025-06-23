@@ -10,7 +10,7 @@ import { MdAnalytics } from "react-icons/md";
 import { Hourglass } from "react-loader-spinner";
 import api from "../../api/api";
 import Graph from "./Graph";
-import { useStoreContext } from "../../context/StoreContext";
+import { useStoreContext } from "../../contextApi/ContextApi";
 import { useNavigate } from "react-router-dom";
 
 
@@ -41,7 +41,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createDate }) => {
         headers:{
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: "Bearer"+token,
+          Authorization: "Bearer "+token,
         },
       });
       setAnalyticsData(data);
@@ -85,7 +85,7 @@ useEffect(() => {
               target="_"
               className="text-[17px]  font-montserrat font-[600] text-linkColor"
               to={
-                import.meta.env.VITE_REACT_FRONT_END_URL + "/s/" + `${shortUrl}`
+                import.meta.env.VITE_REACT_FRONT_END_URL + "/" + `${shortUrl}`
               }
             >
               {subDomain + "/s/" + `${shortUrl}`}
