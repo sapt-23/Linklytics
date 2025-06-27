@@ -6,9 +6,12 @@ import { useFetchMyShortUrls, useFetchTotalClicks } from "../../hooks/useQuery";
 import ShortenPopUp from "./ShortenPopUp";
 import ShortenUrlList from "./ShortenUrlList";
 import { FaLink } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import Loader from "../Loader";
 
 const DashBoardLayout = () => {
   // const refetch=false;
+  const navigate = useNavigate();
   const { token } = useStoreContext();
   const[shortenPopup, setShortenPopup] = React.useState(false);
   // console.log(useFetchTotalClicks(token, onError));
@@ -23,12 +26,12 @@ const DashBoardLayout = () => {
   );
 
   function onError() {
-    console.log("Error");
+    navigate("/error");
   }
   return (
     <div className="lg:px-14 sm:px-8 px-4 min-h-[calc(100vh-64px)]">
       {loader ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <div className="lg:w-[90%] w-full mx-auto py-16">
           <div className=" h-96 relative">
